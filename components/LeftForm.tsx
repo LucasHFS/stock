@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { stockSymbols } from '../utils/mockData'
 import { PriceAlert } from '../types/Stock'
+import Select from './ui/Select'
+import { stockSymbols } from '@/utils/mockData'
 
 interface LeftFormProps {
   onSubmit: (alert: PriceAlert) => void;
@@ -27,18 +27,7 @@ export function LeftForm({ onSubmit }: LeftFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Select onValueChange={setSelectedStock} value={selectedStock}>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a stock" />
-        </SelectTrigger>
-        <SelectContent>
-          {stockSymbols.map((symbol) => (
-            <SelectItem key={symbol} value={symbol}>
-              {symbol}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <Select options={stockSymbols} selectedStock={selectedStock} setSelectedStock={setSelectedStock} />
       <Input
         type="number"
         placeholder="Alert price"
