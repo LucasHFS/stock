@@ -31,6 +31,7 @@ const useWebSocket = (handleTradeData: (data: any[]) => void) => {
   };
 
   const unsubscribeFromStock = (symbol: string) => {
+    if (socket && socket.readyState === WebSocket.CLOSED) return;
     socket?.send(JSON.stringify({ type: "unsubscribe", symbol }));
   };
 

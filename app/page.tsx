@@ -6,7 +6,7 @@ import { StockGraph } from '../components/StockGraph'
 import { useStockContext } from '@/context/StockContext';
 
 export default function Home() {
-  const { stocks, addAlert, loading, removeAlert } = useStockContext();
+  const { stocks, addAlert, loading, removeAlert, historicalData } = useStockContext();
 
   return (
     <div className="container mx-auto p-4">
@@ -20,7 +20,7 @@ export default function Home() {
         </div>
         <div className="md:col-span-3">
           <div className="mt-4">
-            <StockGraph stocks={stocks} />
+            <StockGraph historicalData={historicalData} />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Stock } from '../types/Stock'
 import { useStockContext } from "@/context/StockContext";
 import { X } from "lucide-react";
+import LoadingSpinner from "./ui/LoadingSpinner";
 
 interface TopCardsProps {
   stocks: Stock[];
@@ -24,18 +25,22 @@ export function TopCards({ stocks, removeAlert }: TopCardsProps) {
               {stock.name} ({stock.symbol})
             </CardTitle>
           </CardHeader>
-          <div className="flex flex-col">
-          <CardContent>
-            <div className={`text-2xl font-bold ${stock.price >= findAlertPrice(stock?.symbol) ? 'text-green-500' : 'text-red-500'}`}>${stock.price.toFixed(2)}</div>
-            <p className={`text-xs ${stock.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-              {stock.change >= 0 ? '+' : ''}{stock.change.toFixed(2)}%
-            </p>
-          </CardContent>
-          <CardFooter>
-            <button onClick={() => removeAlert(stock.symbol)} className="text-red-500">
-              <X size={24} />
-            </button>
-          </CardFooter></div>
+          <div className="flex flex-col  align-center items-center">
+            <CardContent>
+              {stock.price > 0 ? <>
+                <div className={`text-2xl font-bold ${stock.price >= findAlertPrice(stock?.symbol) ? 'text-green-500' : 'text-red-500'}`}>${stock.price.toFixed(2)}</div>
+                <p className={`text-xs ${stock.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {stock.change >= 0 ? '+' : ''}{stock.change.toFixed(2)}%
+                </p>
+              </> :
+              <LoadingSpinner />}
+            </CardContent>
+            <CardFooter>
+              <button onClick={() => removeAlert(stock.symbol)} className="text-red-500">
+                <X size={24} />
+              </button>
+            </CardFooter>
+          </div>
         </Card>
       ))}
     </div>

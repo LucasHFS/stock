@@ -36,7 +36,7 @@ export function LeftForm({ onSubmit, loading }: LeftFormProps) {
         value={alertPrice}
         onChange={(e) => setAlertPrice(e.target.value)}
       />
-      <Button type="submit" className="w-full bg-blue-600 text-white">{loading ? <LoadingSpinner /> : 'Set Alert'}</Button>
+      <Button type="submit" className="w-full bg-blue-600 text-white" disabled={loading}>{loading ? <LoadingSpinner /> : 'Set Alert'}</Button>
     </form>
   )
 }

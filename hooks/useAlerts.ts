@@ -2,7 +2,11 @@ import { useState } from "react";
 import { stocks as initialStocks } from "../utils/mockData";
 import { PriceAlert, Stock } from "@/types/Stock";
 
-const useAlerts = (setStocks: React.Dispatch<React.SetStateAction<Stock[]>>, subscribeToStock: (symbol: string) => void, unsubscribeFromStock: (symbol: string) => void) => {
+const useAlerts = (
+  setStocks: React.Dispatch<React.SetStateAction<Stock[]>>,
+  subscribeToStock: (symbol: string) => void,
+  unsubscribeFromStock: (symbol: string) => void,
+  setHistoricalData: React.Dispatch<React.SetStateAction<Record<string, { time: number; price: number; }[]>>>) => {
   const [alerts, setAlerts] = useState<PriceAlert[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -24,6 +28,11 @@ const useAlerts = (setStocks: React.Dispatch<React.SetStateAction<Stock[]>>, sub
   const removeAlert = (stockSym: string) => {
     setStocks((prevStocks) => prevStocks.filter((s) => s.symbol !== stockSym));
     setAlerts((prevAlerts) => prevAlerts.filter((a) => a.symbol !== stockSym));
+    setHistoricalData((prevData) => {
+      const updatedData = { ...prevData };
+      delete updatedData[stockSym];
+      return updatedData;
+    });
     unsubscribeFromStock(stockSym)
   };
 

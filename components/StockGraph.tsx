@@ -1,30 +1,45 @@
-"use client"
+"use client";
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import { Stock } from '../types/Stock'
+import React from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { useStockGraphData } from "../hooks/useStockGraphData";
 
 interface StockGraphProps {
-  stocks: Stock[];
+  historicalData: Record<string, { time: number; price: number }[]>;
 }
 
-export function StockGraph({ stocks }: StockGraphProps) {
-  if (!stocks.length) return null;
-  const data = stocks.map(stock => ({
-    name: stock.symbol,
-    value: stock.price
-  }))
+export function StockGraph({ historicalData }: StockGraphProps) {
+  const { data, colorMap } = useStockGraphData(historicalData);
+
+  if (!historicalData) return <p>No data available to display</p>;
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={400}>
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="time" label={{ value: "Time", position: "insideBottomRight", offset: -5 }} />
+        <YAxis label={{ value: "Price ($)", angle: -90, position: "insideLeft" }} />
         <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Legend verticalAlign="top" height={36} />
+        {Object.keys(historicalData).map((symbol) => (
+          <Line
+            key={symbol}
+            type="monotone"
+            dataKey={symbol}
+            stroke={colorMap[symbol]}
+            activeDot={{ r: 8 }}
+          />
+        ))}
       </LineChart>
     </ResponsiveContainer>
-  )
+  );
 }
-

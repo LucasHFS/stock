@@ -12,20 +12,15 @@ interface StockContextProps {
   addAlert: (alert: PriceAlert) => void;
   removeAlert: (stockSym: string) => void;
   loading: boolean;
+  historicalData: Record<string, { time: number; price: number }[]>;
 }
 
 const StockContext = createContext<StockContextProps | undefined>(undefined);
 
 export const StockProvider = ({ children }: { children: ReactNode }) => {
-  const { stocks, setStocks, handleTradeData } = useStocks();
+  const { stocks, setStocks, handleTradeData, historicalData, setHistoricalData } = useStocks();
   const { subscribeToStock, unsubscribeFromStock } = useWebSocket(handleTradeData);
-  const { alerts, addAlert, removeAlert, loading } = useAlerts(setStocks, subscribeToStock, unsubscribeFromStock);
-
-  useEffect(() => {
-    return () => {
-      alerts.forEach((alert) => unsubscribeFromStock(alert.symbol));
-    };
-  }, [alerts, unsubscribeFromStock]);
+  const { alerts, addAlert, removeAlert, loading } = useAlerts(setStocks, subscribeToStock, unsubscribeFromStock, setHistoricalData);
 
   return (
     <StockContext.Provider
@@ -35,6 +30,7 @@ export const StockProvider = ({ children }: { children: ReactNode }) => {
         addAlert,
         removeAlert,
         loading,
+        historicalData,
       }}
     >
       {children}

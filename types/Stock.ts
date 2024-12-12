@@ -5,6 +5,12 @@ export interface Stock {
   change: number;
 }
 
+export interface StockSocket {
+  symbol: string;
+  t: number;
+  price: number;
+}
+
 export interface PriceAlert {
   symbol: string;
   price: number;
