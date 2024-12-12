@@ -1,21 +1,5 @@
 import { Stock } from '../types/Stock';
 
-export const stockSymbols = [
-  "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "AVGO", 
-  "PEP", "CMCSA", "COST", "ADBE", "CSCO", "TMUS", "QCOM", "TXN", 
-  "AMD", "INTC", "AMAT", "NFLX", "PDD", "HON", "INTU", "MRNA", 
-  "AMGN", "PYPL", "VRTX", "SBUX", "MDLZ", "ISRG", "ADI", "BKNG", 
-  "GILD", "REGN", "LRCX", "KLAC", "ADP", "CSX", "MELI", "SNPS", 
-  "PANW", "ATVI", "XEL", "WDAY", "AEP", "CTSH", "CHTR", "IDXX", 
-  "CRWD", "CDNS", "NXPI", "MRVL", "EBAY", "MNST", "ORLY", "TEAM", 
-  "FTNT", "ABNB", "ODFL", "EXC", "ZS", "LCID", "ROST", "PCAR", 
-  "CTAS", "SWKS", "BIIB", "PAYC", "ALGN", "KDP", "SPLK", "MTCH", 
-  "DXCM", "SGEN", "FAST", "WBA", "VRSK", "MAR", "ILMN", "TTWO", 
-  "ASML", "CROX", "EXPE", "CPRT", "U", "SEDG", "TSCO", "CHKP", 
-  "DDOG", "FANG", "HUBS", "ZBRA", "MCHP", "DOCU", "APP", "PTON", 
-  "NVCR", "TRMB", "IRDM"
-];
-
 export const stocks: Stock[] = [
   { symbol: 'AAPL', name: 'Apple Inc.', price: 0, change: 0 },
   { symbol: 'GOOGL', name: 'Alphabet Inc.', price: 0, change: -0 },
@@ -78,3 +62,5 @@ export const stocks: Stock[] = [
   { symbol: 'ODFL', name: 'Old Dominion Freight Line Inc.', price: 0, change: 0 },
   { symbol: 'EXC', name: 'Exelon Corporation', price: 0, change: 0 },
 ]
+
+export const stockSymbols = stocks.map(stock => stock.symbol);
