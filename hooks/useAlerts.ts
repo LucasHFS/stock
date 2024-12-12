@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { stocks as initialStocks } from "../utils/mockData";
+import { stocks as initialStocks } from "@/utils/stockData";
 import { PriceAlert, Stock } from "@/types/Stock";
 
 const useAlerts = (
@@ -14,7 +14,9 @@ const useAlerts = (
     setLoading(true);
     const stock = initialStocks.find((s) => s.symbol === alert.symbol);
     if (!stock) return;
-
+    
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     setStocks((prevStocks) => {
       const isStockAlreadyTracked = prevStocks.some((s) => s.symbol === alert.symbol);
       return isStockAlreadyTracked ? prevStocks : [...prevStocks, stock];

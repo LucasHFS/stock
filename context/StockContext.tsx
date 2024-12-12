@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, ReactNode, useEffect } from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 import { Stock, PriceAlert } from "../types/Stock";
 import useWebSocket from "@/hooks/useWebSocket";
 import useStocks from "@/hooks/useStocks";

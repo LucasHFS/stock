@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { PriceAlert } from '../types/Stock'
 import Select from './ui/Select'
-import { stockSymbols } from '@/utils/mockData'
+import { stockSymbols } from '@/utils/stockData'
 import LoadingSpinner from './ui/LoadingSpinner'
 
 interface LeftFormProps {
