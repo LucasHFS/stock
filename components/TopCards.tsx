@@ -17,7 +17,7 @@ export function TopCards({ stocks, removeAlert }: TopCardsProps) {
   }
 
   return (
-    <div className="flex overflow-x-auto space-x-4 no-scrollbar">
+    <div className="flex overflow-x-auto space-x-4 ">
       {stocks.map((stock) => (
         <Card key={stock.symbol} className="min-w-[250px]">
           <CardHeader className="flex flex-row space-y-0 pb-2">

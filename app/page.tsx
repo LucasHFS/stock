@@ -15,7 +15,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold mb-4 text-center">Stock Tracker</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="md:col-span-1">
+        <div className="md:col-span-1 flex justify-center items-center">
           <LeftForm onSubmit={addAlert} loading={loading} />
         </div>
         <div className="md:col-span-3">
