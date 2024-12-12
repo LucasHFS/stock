@@ -8,6 +8,7 @@ interface StockGraphProps {
 }
 
 export function StockGraph({ stocks }: StockGraphProps) {
+  if (!stocks.length) return null;
   const data = stocks.map(stock => ({
     name: stock.symbol,
     value: stock.price

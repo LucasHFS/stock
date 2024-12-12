@@ -4,18 +4,20 @@ import { Button } from "@/components/ui/button"
 import { PriceAlert } from '../types/Stock'
 import Select from './ui/Select'
 import { stockSymbols } from '@/utils/mockData'
+import LoadingSpinner from './ui/LoadingSpinner'
 
 interface LeftFormProps {
   onSubmit: (alert: PriceAlert) => void;
+  loading: boolean;
 }
 
-export function LeftForm({ onSubmit }: LeftFormProps) {
+export function LeftForm({ onSubmit, loading }: LeftFormProps) {
   const [selectedStock, setSelectedStock] = useState<string>('')
   const [alertPrice, setAlertPrice] = useState<string>('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (selectedStock && alertPrice) {
+    if (selectedStock) {
       onSubmit({
         symbol: selectedStock,
         price: parseFloat(alertPrice)
@@ -27,14 +29,14 @@ export function LeftForm({ onSubmit }: LeftFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Select options={stockSymbols} selectedStock={selectedStock} setSelectedStock={setSelectedStock} />
+      <Select options={stockSymbols} selectedStock={selectedStock} setSelectedStock={setSelectedStock} required />
       <Input
         type="number"
         placeholder="Alert price"
         value={alertPrice}
         onChange={(e) => setAlertPrice(e.target.value)}
       />
-      <Button type="submit" className="w-full bg-blue-600 text-white">Set Alert</Button>
+      <Button type="submit" className="w-full bg-blue-600 text-white">{loading ? <LoadingSpinner /> : 'Set Alert'}</Button>
     </form>
   )
 }

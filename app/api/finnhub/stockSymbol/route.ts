@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
-const apiKey = process.env.FINNHUB_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_FINNHUB_API_KEY;
 
 // let on hold for now
 export async function GET(req) {
