@@ -1,8 +1,8 @@
-import { useMemo } from "react";
+import { useMemo } from "react"
 
 interface StockGraphData {
-  data: Record<string, string | number | null>[];
-  colorMap: Record<string, string>;
+  data: Record<string, string | number | null>[]
+  colorMap: Record<string, string>
 }
 
 export function useStockGraphData(historicalData: Record<string, { time: number; price: number }[]>): StockGraphData {
@@ -17,15 +17,15 @@ export function useStockGraphData(historicalData: Record<string, { time: number;
       "#00ff00",
       "#0000ff",
       "#ff00ff",
-    ];
-    const map: Record<string, string> = {};
+    ]
+    const map: Record<string, string> = {}
     Object.keys(historicalData).forEach((symbol, index) => {
-      map[symbol] = colors[index % colors.length];
-    });
-    return map;
-  }, [historicalData]);
+      map[symbol] = colors[index % colors.length]
+    })
+    return map
+  }, [historicalData])
 
-  const allSymbols = Object.keys(historicalData);
+  const allSymbols = Object.keys(historicalData)
 
   const allTimestamps = Array.from(
     new Set(
@@ -33,30 +33,30 @@ export function useStockGraphData(historicalData: Record<string, { time: number;
         .flat()
         .map((point) => new Date(point.time).toLocaleTimeString())
     )
-  ).sort();
+  ).sort()
 
   // Build normalized data for the chart with last-known value filling
-  const lastKnownValues: Record<string, number | null> = {};
+  const lastKnownValues: Record<string, number | null> = {}
 
   const data = allTimestamps.map((timestamp) => {
-    const entry: Record<string, string | number | null> = { time: timestamp };
+    const entry: Record<string, string | number | null> = { time: timestamp }
 
     allSymbols.forEach((symbol) => {
       const point = historicalData[symbol]?.find(
         (dataPoint) =>
           new Date(dataPoint.time).toLocaleTimeString() === timestamp
-      );
+      )
 
       if (point) {
-        entry[symbol] = point.price; // Use current value if available
-        lastKnownValues[symbol] = point.price; // Update last known value
+        entry[symbol] = point.price // Use current value if available
+        lastKnownValues[symbol] = point.price
       } else {
-        entry[symbol] = lastKnownValues[symbol] ?? null; // Fill with last known value or null
+        entry[symbol] = lastKnownValues[symbol] ?? null
       }
-    });
+    })
 
-    return entry;
-  });
+    return entry
+  })
 
-  return { data, colorMap };
+  return { data, colorMap }
 }

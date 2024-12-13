@@ -1,17 +1,17 @@
 'use client'
 
 type SelectProps = {
-  options: string[];
-  selectedStock: string;
-  setSelectedStock: (stock: string) => void;
+  options: string[]
+  selectedStock: string
+  setSelectedStock: (stock: string) => void
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: any
 }
 
 export default function Select({ options, selectedStock, setSelectedStock, ...props }: SelectProps) {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedStock(event.target.value);
-  };
+    setSelectedStock(event.target.value)
+  }
 
   return (
     <div className="w-full max-w-sm min-w-[200px]">
@@ -47,5 +47,5 @@ export default function Select({ options, selectedStock, setSelectedStock, ...pr
         </svg>
       </div>
     </div>
-  );
+  )
 }

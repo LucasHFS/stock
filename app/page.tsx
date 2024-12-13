@@ -3,10 +3,10 @@
 import { LeftForm } from '../components/LeftForm'
 import { TopCards } from '../components/TopCards'
 import { StockGraph } from '../components/StockGraph'
-import { useStockContext } from '@/context/StockContext';
+import { useStockContext } from '@/context/StockContext'
 
 export default function Home() {
-  const { stocks, addAlert, loading, removeAlert, historicalData } = useStockContext();
+  const { stocks, addAlert, loading, removeAlert, historicalData } = useStockContext()
 
   return (
     <div className="container mx-auto p-4">

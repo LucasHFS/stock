@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import React from "react";
+import React from "react"
 import {
   LineChart,
   Line,
@@ -10,17 +10,17 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { useStockGraphData } from "../hooks/useStockGraphData";
+} from "recharts"
+import { useStockGraphData } from "../hooks/useStockGraphData"
 
 interface StockGraphProps {
-  historicalData: Record<string, { time: number; price: number }[]>;
+  historicalData: Record<string, { time: number; price: number }[]>
 }
 
 export function StockGraph({ historicalData }: StockGraphProps) {
-  const { data, colorMap } = useStockGraphData(historicalData);
+  const { data, colorMap } = useStockGraphData(historicalData)
 
-  if (!historicalData) return <p>No data available to display</p>;
+  if (!historicalData) return <p>No data available to display</p>
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -42,5 +42,5 @@ export function StockGraph({ historicalData }: StockGraphProps) {
         ))}
       </LineChart>
     </ResponsiveContainer>
-  );
+  )
 }

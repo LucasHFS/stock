@@ -20,7 +20,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To run this project you'll need create a .env file and add to it the env var `NEXT_PUBLIC_FINNHUB_API_KEY` with your key that you can get for free on [finnhub](https://finnhub.io/dashboard)
 
-## Notes
-
-I created the file data/stocks.json with data from finnhub enpoint.
-On a real application I would make a background job hit the finnhub enpoint and update this json, or store on  a database
+## Future Improvements 
+- Persist the selected stocks on local storage, and open subscribe to the stock when mounting the component, so we can store user's stock.
+- Add More Tests
+- I created the file data/stocks.json with data from finnhub enpoint. On a real application I would make a background job hit the finnhub enpoint, process the data and update this json, or store on DB with the desired frequency.
+- Improve Typescript application
+- Enforce code styling

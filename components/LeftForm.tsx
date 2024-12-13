@@ -7,8 +7,8 @@ import { stockSymbols } from '@/utils/stockData'
 import LoadingSpinner from './ui/LoadingSpinner'
 
 interface LeftFormProps {
-  onSubmit: (alert: PriceAlert) => void;
-  loading: boolean;
+  onSubmit: (alert: PriceAlert) => void
+  loading: boolean
 }
 
 export function LeftForm({ onSubmit, loading }: LeftFormProps) {
@@ -36,7 +36,9 @@ export function LeftForm({ onSubmit, loading }: LeftFormProps) {
         value={alertPrice}
         onChange={(e) => setAlertPrice(e.target.value)}
       />
-      <Button type="submit" className="w-full bg-blue-600 text-white" disabled={loading}>{loading ? <LoadingSpinner /> : 'Set Alert'}</Button>
+      <Button type="submit" className="w-full bg-blue-600 text-white" disabled={loading}>
+        {loading ? <LoadingSpinner /> : 'Set Alert'}
+      </Button>
     </form>
   )
 }

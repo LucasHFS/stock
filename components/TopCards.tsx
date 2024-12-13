@@ -1,19 +1,19 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Stock } from '../types/Stock'
-import { useStockContext } from "@/context/StockContext";
-import { X } from "lucide-react";
-import LoadingSpinner from "./ui/LoadingSpinner";
+import { useStockContext } from "@/context/StockContext"
+import { X } from "lucide-react"
+import LoadingSpinner from "./ui/LoadingSpinner"
 
 interface TopCardsProps {
-  stocks: Stock[];
-  removeAlert: (stockSym: string) => void;
+  stocks: Stock[]
+  removeAlert: (stockSym: string) => void
 }
 
 export function TopCards({ stocks, removeAlert }: TopCardsProps) {
-  const { alerts } = useStockContext();
+  const { alerts } = useStockContext()
 
   const findAlertPrice = (stockSym: string) => {
-    return alerts.find((alert) => alert.symbol === stockSym)?.price || 0;
+    return alerts.find((alert) => alert.symbol === stockSym)?.price || 0
   }
 
   return (
