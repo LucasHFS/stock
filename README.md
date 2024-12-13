@@ -27,3 +27,7 @@ To run this project you'll need create a .env file and add to it the env var `NE
 - Improve Typescript application
 - Enforce code styling
 - Handle Errors Properly
+
+## Short demo
+
+![Stock Demo](./stock_demo.gif)
