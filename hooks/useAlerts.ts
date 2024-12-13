@@ -7,6 +7,7 @@ const useAlerts = (
   subscribeToStock: (symbol: string) => void,
   unsubscribeFromStock: (symbol: string) => void,
   setHistoricalData: React.Dispatch<React.SetStateAction<Record<string, { time: number; price: number; }[]>>>) => {
+
   const [alerts, setAlerts] = useState<PriceAlert[]>([]);
   const [loading, setLoading] = useState(false);
 

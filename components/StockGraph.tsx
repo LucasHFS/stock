@@ -32,6 +32,7 @@ export function StockGraph({ historicalData }: StockGraphProps) {
         <Legend verticalAlign="top" height={36} />
         {Object.keys(historicalData).map((symbol) => (
           <Line
+            data-testid={`line-${symbol}`}
             key={symbol}
             type="monotone"
             dataKey={symbol}

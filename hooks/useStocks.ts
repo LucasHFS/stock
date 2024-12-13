@@ -1,16 +1,16 @@
 import { Stock } from "@/types/Stock";
 import { useCallback, useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const calculateChange = (trade: any , stock: Stock) => {
+  if (stock.price === 0) return 0;
+
+  return ((trade.p - stock.price) / stock.price) * 100;
+}
+
 const useStocks = () => {
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [historicalData, setHistoricalData] = useState<Record<string, { time: number; price: number }[]>>({});
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const calculateChange = useCallback((trade: any , stock: Stock) => {
-    if (stock.price === 0) return 0;
-
-    return ((trade.p - stock.price) / stock.price) * 100;
-  },[])
 
   const handleTradeData = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,7 +45,7 @@ const useStocks = () => {
         })
       );
     },
-    [setStocks, setHistoricalData, calculateChange]
+    [setStocks, setHistoricalData]
   );
 
   return { stocks: stocks, setStocks, historicalData, handleTradeData, setHistoricalData };
